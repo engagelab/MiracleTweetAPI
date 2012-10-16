@@ -5,6 +5,8 @@
 
 package models;
 
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 import com.google.code.morphia.annotations.Id;
 import leodagdag.play2morphia.Model;
@@ -40,10 +42,31 @@ public class Tweet extends Model
 		return new Model.Finder<ObjectId, Tweet>(ObjectId.class, Tweet.class);
 	
 	}
-	    
-	    
+
+	
 	//empty constructor for fetch queries
 	public Tweet(){ }
+
+	
+	public void initValues()
+	{
+		this.isVisible = true;
+		this.isPortfolio = false;
+		this.xpos = 15;
+		this.ypos = 15;
+	}
+
+	//Creating new tweet
+	public Tweet(String source, String userId, String text) 
+	{
+		
+		this.source    = source;
+		this.createdAt = new Date().toString();
+		this.userId    = userId;
+		this.text      = text;
+		this.initValues();
+
+	}
 	
 	
 	
