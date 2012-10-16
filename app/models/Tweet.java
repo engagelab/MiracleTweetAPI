@@ -18,7 +18,8 @@ import leodagdag.play2morphia.Model;
 
 
 
-public class Tweet extends Model{
+public class Tweet extends Model
+{
 	
 	//adopted from Twitter JSON Schema
 	@Id
