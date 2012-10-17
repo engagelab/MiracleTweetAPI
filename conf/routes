@@ -5,5 +5,35 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+
+
+
+
+
+#===========================Tweet CRUD Services=================================#
+GET				/tweet/:userName					controllers.Tweets.fetchTweetsByUser(userName:String)
+POST			/tweet								controllers.Tweets.addTweet()
+PUT				/tweet								controllers.Tweets.updateTweet()
+DELETE			/tweet								controllers.Tweets.removeTweet()
+
+
+
+
+#============================Tweet HASH Services================================#
+GET				/hash								controllers.TweetHashStore.findTweetsByHashTag
+POST			/hash								controllers.TweetHashStore.addTweetToHashTable
+
+
+
+#===============================================================================#
+
+
+
+
+#===============================================================================#
+
+
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
