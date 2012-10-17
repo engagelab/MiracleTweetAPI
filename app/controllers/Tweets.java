@@ -1,20 +1,25 @@
 package controllers;
 
 import java.util.List;
-
 import models.Tweet;
 import models.TweetHashTable;
-
 import org.codehaus.jackson.JsonNode;
-
 import static play.libs.Json.toJson;
-
 import play.mvc.Controller;
 import play.mvc.Result;
+
+
+/**
+ * @author Muhammad Fahied
+ *
+ */
+
 
 public class Tweets extends Controller
 {
 
+	
+	
 	
 	
 	
@@ -42,6 +47,10 @@ public class Tweets extends Controller
 	 
 	 
 	 
+	 
+	 
+	 
+	 
 	 public static Result updateTweet() 
 	  {
 		 
@@ -62,6 +71,10 @@ public class Tweets extends Controller
 	 
 	 
 	 
+	 
+	 
+	 
+	 
 	 public static Result fetchTweetsByGroup(String userId) 
 	  {
 		 
@@ -70,6 +83,11 @@ public class Tweets extends Controller
 		return ok(toJson(tweets));
 		
 	  }
+	 
+	 
+	 
+	 
+	 
 	 
 	 
 	 
