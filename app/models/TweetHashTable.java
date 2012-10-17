@@ -24,6 +24,7 @@ public class TweetHashTable extends Model
 	
 	@Id
 	public String id;
+	
 	public String hashTag;
 	
 	@Reference()

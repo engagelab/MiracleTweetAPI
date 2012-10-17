@@ -45,28 +45,20 @@ public class Tweet extends Model
 
 	
 	//empty constructor for fetch queries
-	public Tweet(){ }
+	public Tweet(String source, String userId, String text, Boolean isVisible, Boolean isPortfolio, int xpos, int ypos)
+	{
+		this.source      = source;
+		this.createdAt   = new Date().toString();
+		this.userId      = userId;
+		this.text        = text;
+		this.isVisible   = isVisible;
+		this.isPortfolio = isPortfolio;
+		this.xpos        = xpos;
+		this.ypos        = ypos;
+		
+	}
 
 	
-	public void initValues()
-	{
-		this.isVisible = true;
-		this.isPortfolio = false;
-		this.xpos = 15;
-		this.ypos = 15;
-	}
-
-	//Creating new tweet
-	public Tweet(String source, String userId, String text) 
-	{
-		
-		this.source    = source;
-		this.createdAt = new Date().toString();
-		this.userId    = userId;
-		this.text      = text;
-		this.initValues();
-
-	}
 	
 	
 	
