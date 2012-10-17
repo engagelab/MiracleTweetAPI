@@ -23,7 +23,6 @@ public class TweetHashTable extends Model
 	
 	@Id
 	public String id;
-	
 	public String hashTag;
 	
 	@Reference()
@@ -41,7 +40,8 @@ public class TweetHashTable extends Model
 	public TweetHashTable(){ }
 
 
-	public TweetHashTable(String hashTag) {
+	public TweetHashTable(String hashTag) 
+	{
 		this.hashTag = hashTag;
 		this.tweets = new ArrayList<Tweet>();
 	}

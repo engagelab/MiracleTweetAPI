@@ -4,6 +4,7 @@
 package controllers;
 
 import static play.libs.Json.toJson;
+
 import models.Tweet;
 import models.TweetHashTable;
 import org.codehaus.jackson.JsonNode;
@@ -73,33 +74,7 @@ public class TweetHashStore extends Controller
 		
 	  }
 	 
-	 
-	 
-	 
-	 
-	 
-	 public static Result removeTweetFromHashTable() 
-	  {
-		 
-		 JsonNode node =  ctx().request().body().asJson();
-	
-		 String hashTag = node.get("hashTag").asText();
-		 String tweetId = node.get("tweetId").asText();
-		 
-		 TweetHashTable table = TweetHashTable.find().filter("hashTag", hashTag).get();
-		 if (table == null) {
-			 return ok(toJson("No hashTag with this name"+hashTag));
-		}
 
-		 Tweet tweet = Tweet.find().byId(tweetId);
-		 table.tweets.remove(tweet);
-		 
-		return ok(toJson(table.tweets));
-		
-	  }
-	 
-	 
-	 
 	 
 	 
 

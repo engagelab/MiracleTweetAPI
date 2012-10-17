@@ -29,7 +29,7 @@ public class Tweets extends Controller
 		 JsonNode node =  ctx().request().body().asJson();
 	
 		 String source = node.get("source").asText();
-		 String userId = node.get("userId").asText();
+		 String userName = node.get("userName").asText();
 		 String text = node.get("text").asText();
 		 Boolean isVisible   = node.get("isVisible").asBoolean();
 		 Boolean isPortfolio = node.get("isPortfolio").asBoolean();
@@ -37,7 +37,7 @@ public class Tweets extends Controller
 		 int ypos = node.get("ypos").asInt();
 		 
 		
-		 Tweet tweet = new Tweet(source,userId,text,isVisible, isPortfolio,xpos,ypos);
+		 Tweet tweet = new Tweet(source,userName,text,isVisible, isPortfolio,xpos,ypos);
 		 tweet.insert();
 
 		return ok(toJson(tweet));
@@ -75,10 +75,10 @@ public class Tweets extends Controller
 	 
 	 
 	 
-	 public static Result fetchTweetsByGroup(String userId) 
+	 public static Result fetchTweetsByUser(String userName) 
 	  {
 		 
-		 List<Tweet> tweets = Tweet.find().filter("userId", userId).asList();
+		 List<Tweet> tweets = Tweet.find().filter("userName", userName).asList();
 
 		return ok(toJson(tweets));
 		
@@ -91,26 +91,38 @@ public class Tweets extends Controller
 	 
 	 
 	 
-	 public static Result removeTweetFromHashTable() 
+	 public static Result removeTweet() 
 	  {
 		 
 		 JsonNode node =  ctx().request().body().asJson();
 	
 		 String hashTag = node.get("hashTag").asText();
 		 String tweetId = node.get("tweetId").asText();
-
 		 Tweet tweet = Tweet.find().byId(tweetId);
-
+		 //first remove reference from Tweet Hash table
+		 removeTweetFromHashTable(tweet,hashTag);
+		 //then Kill the object itself
+		 tweet.delete();
+		return ok(toJson("deleted"));
+		
+	  }
+	 
+	 
+	 
+	 
+	 
+	 
+	 public static Boolean removeTweetFromHashTable(Tweet tweet, String hashTag)
+	 {
+		 
 		 TweetHashTable table = TweetHashTable.find().filter("hashTag", hashTag).get();
-		 if (table == null) {
-			 return ok(toJson("No hashTag with this name"+hashTag));
-		}
+		 if (table == null) {return false;}
 
 		 table.tweets.remove(tweet);
 		 table.update();
-		return ok(toJson("OK"));
-		
-	  }
+		 return true;
+		 
+	 }
 	 
 
 
