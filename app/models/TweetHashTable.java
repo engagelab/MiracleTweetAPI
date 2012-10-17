@@ -3,6 +3,7 @@
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -40,6 +41,12 @@ public class TweetHashTable extends Model
 	    
 	//empty constructor for fetch queries
 	public TweetHashTable(){ }
+
+
+	public TweetHashTable(String hashTag) {
+		this.hashTag = hashTag;
+		this.tweets = new ArrayList<Tweet>();
+	}
 	
 
 }

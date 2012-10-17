@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Tweet;
+import models.TweetHashTable;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -70,6 +71,28 @@ public class Tweets extends Controller
 		
 	  }
 	 
+	 
+	 
+	 public static Result removeTweetFromHashTable() 
+	  {
+		 
+		 JsonNode node =  ctx().request().body().asJson();
+	
+		 String hashTag = node.get("hashTag").asText();
+		 String tweetId = node.get("tweetId").asText();
+
+		 Tweet tweet = Tweet.find().byId(tweetId);
+
+		 TweetHashTable table = TweetHashTable.find().filter("hashTag", hashTag).get();
+		 if (table == null) {
+			 return ok(toJson("No hashTag with this name"+hashTag));
+		}
+
+		 table.tweets.remove(tweet);
+		 table.update();
+		return ok(toJson("OK"));
+		
+	  }
 	 
 
 
