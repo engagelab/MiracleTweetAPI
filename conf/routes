@@ -12,7 +12,7 @@ GET     /                           controllers.Application.index()
 
 #===========================Tweet CRUD Services=================================#
 GET				/tweet/:userName					controllers.Tweets.fetchTweetsByUser(userName:String)
-POST			/tweet								controllers.Tweets.addTweet()
+POST			/tweet								controllers.Tweets.saveTweet()
 PUT				/tweet								controllers.Tweets.updateTweet()
 DELETE			/tweet								controllers.Tweets.removeTweet()
 

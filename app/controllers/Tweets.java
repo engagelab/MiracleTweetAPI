@@ -23,7 +23,7 @@ public class Tweets extends Controller
 	
 	
 	
-	 public static Result addTweet() 
+	 public static Result saveTweet() 
 	  {
 		 
 		 JsonNode node =  ctx().request().body().asJson();
@@ -44,10 +44,7 @@ public class Tweets extends Controller
 		
 	  }
 	 
-	 
-	 
-	 
-	 
+
 	 
 	 
 	 
