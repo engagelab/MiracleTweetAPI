@@ -30,6 +30,7 @@ public class Tweets extends Controller
 	
 		 String source = node.get("source").asText();
 		 String userName = node.get("userName").asText();
+		 String ownerName = node.get("ownerName").asText();
 		 String text = node.get("text").asText();
 		 Boolean isVisible   = node.get("isVisible").asBoolean();
 		 Boolean isPortfolio = node.get("isPortfolio").asBoolean();
@@ -37,7 +38,7 @@ public class Tweets extends Controller
 		 int ypos = node.get("ypos").asInt();
 		 
 		
-		 Tweet tweet = new Tweet(source,userName,text,isVisible, isPortfolio,xpos,ypos);
+		 Tweet tweet = new Tweet(source,userName,ownerName,text,isVisible, isPortfolio,xpos,ypos);
 		 tweet.insert();
 
 		return ok(toJson(tweet));
