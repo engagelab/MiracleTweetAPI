@@ -29,6 +29,7 @@ public class Tweet extends Model
 	public String source;
 	public String createdAt;
 	public String userName;
+	public String ownerName;
 	public String text;
 	//custom fields
 	public Boolean isVisible;
@@ -48,11 +49,12 @@ public class Tweet extends Model
 	public Tweet() {}
 	
 	
-	public Tweet(String source, String userName, String text, Boolean isVisible, Boolean isPortfolio, int xpos, int ypos)
+	public Tweet(String source, String userName, String ownerName, String text, Boolean isVisible, Boolean isPortfolio, int xpos, int ypos)
 	{
 		this.source      = source;
 		this.createdAt   = new Date().toString();
 		this.userName    = userName;
+		this.ownerName   = ownerName;
 		this.text        = text;
 		this.isVisible   = isVisible;
 		this.isPortfolio = isPortfolio;
