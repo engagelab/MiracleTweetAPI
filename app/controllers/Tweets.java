@@ -3,7 +3,11 @@ package controllers;
 import java.util.List;
 import models.Tweet;
 import models.TweetHashTable;
+
+import org.bson.types.ObjectId;
 import org.codehaus.jackson.JsonNode;
+
+
 import static play.libs.Json.toJson;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -54,16 +58,17 @@ public class Tweets extends Controller
 		 
 		 JsonNode node =  ctx().request().body().asJson();
 		 String id = node.get("id").asText();
-		
-		 Tweet tweet = Tweet.find().byId(id);
-		 tweet.xpos = node.get("xpos").asInt();
-		 tweet.ypos = node.get("ypos").asInt();
-		 tweet.isVisible   = node.get("isVisible").asBoolean();
-		 tweet.isPortfolio = node.get("isPortfolio").asBoolean();
 		 
-		 tweet.update();
-
-		return ok(toJson(tweet));
+		 
+		 Tweet utweet = Tweet.find().filter("id", new ObjectId(id)).get();
+		 utweet.xpos = node.get("xpos").asInt();;
+		 utweet.ypos = node.get("ypos").asInt();
+		 utweet.userName = node.get("userName").asText();
+		 utweet.isVisible   = node.get("isVisible").asBoolean();
+		 utweet.isPortfolio = node.get("isPortfolio").asBoolean();
+		 utweet.text = node.get("text").asText();
+		 utweet.update();
+		return ok(toJson(utweet));
 		
 	  }
 	 
