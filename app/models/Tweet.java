@@ -38,7 +38,6 @@ public class Tweet extends Model
 	public String text;
 	//custom fields
 	public Boolean isVisible;
-	public Boolean isPortfolio;
 	public int xpos;
 	public int ypos;
 	
@@ -54,7 +53,7 @@ public class Tweet extends Model
 	public Tweet() {}
 	
 	
-	public Tweet(String source, String userName, String ownerName, String text, Boolean isVisible, Boolean isPortfolio, int xpos, int ypos)
+	public Tweet(String source, String userName, String ownerName, String text, Boolean isVisible, int xpos, int ypos)
 	{
 		this.source      = source;
 		this.createdAt   = new Date().toString();
@@ -62,7 +61,6 @@ public class Tweet extends Model
 		this.ownerName   = ownerName;
 		this.text        = text;
 		this.isVisible   = isVisible;
-		this.isPortfolio = isPortfolio;
 		this.xpos        = xpos;
 		this.ypos        = ypos;
 		
@@ -81,7 +79,6 @@ public class Tweet extends Model
                 .add("ownerName", ownerName)
                 .add("text", text)
                 .add("isVisible", isVisible)
-                .add("isPortfolio", isPortfolio)
                 .add("xpos", xpos)
                 .add("ypos", ypos)
                 .toString();
