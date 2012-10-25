@@ -61,7 +61,7 @@ public class Tweets extends Controller
 		 String id = node.get("id").asText();
 		 
 		 
-		 Tweet utweet = Tweet.find().filter("id", new ObjectId(id)).get();
+		 Tweet utweet = Tweet.find().filter("id", id).get();
 		 utweet.xpos = node.get("xpos").asInt();;
 		 utweet.ypos = node.get("ypos").asInt();
 		 utweet.userName = node.get("userName").asText();
