@@ -8,7 +8,12 @@ package models;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
+
+
+import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
+import com.google.common.base.Objects;
+
 import leodagdag.play2morphia.Model;
 
 
@@ -19,13 +24,13 @@ import leodagdag.play2morphia.Model;
  */
 
 
-
+@Entity
 public class Tweet extends Model
 {
 	
 	//adopted from Twitter JSON Schema
 	@Id
-	public String id;
+	public String id = new ObjectId().toString();
 	public String source;
 	public String createdAt;
 	public String userName;
@@ -37,10 +42,10 @@ public class Tweet extends Model
 	public int xpos;
 	public int ypos;
 	
-	public static Model.Finder<ObjectId, Tweet> find()
+	public static Model.Finder<String, Tweet> find()
 	{
 		
-		return new Model.Finder<ObjectId, Tweet>(ObjectId.class, Tweet.class);
+		return new Model.Finder<String, Tweet>(String.class, Tweet.class);
 	
 	}
 
@@ -63,6 +68,24 @@ public class Tweet extends Model
 		
 	}
 
+	
+	
+	
+    @Override
+    public String toString() {
+        return Objects.toStringHelper(this)
+        		.add("id", id)
+                .add("source", source)
+                .add("createdAt", createdAt)
+                .add("userName", userName)
+                .add("ownerName", ownerName)
+                .add("text", text)
+                .add("isVisible", isVisible)
+                .add("isPortfolio", isPortfolio)
+                .add("xpos", xpos)
+                .add("ypos", ypos)
+                .toString();
+    }
 	
 
 }
