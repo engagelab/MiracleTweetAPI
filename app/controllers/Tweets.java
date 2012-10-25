@@ -73,10 +73,7 @@ public class Tweets extends Controller
 		
 	  }
 	 
-	 
-	 
-	 
-	 
+
 	 
 	 
 	 public static Result fetchTweetsByUser(String userName) 
