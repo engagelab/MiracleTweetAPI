@@ -3,11 +3,7 @@ package controllers;
 import java.util.List;
 import models.Tweet;
 import models.TweetHashTable;
-
 import org.codehaus.jackson.JsonNode;
-
-
-import org.bson.types.ObjectId;
 
 import static play.libs.Json.toJson;
 import play.mvc.Controller;
