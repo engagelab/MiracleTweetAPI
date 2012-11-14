@@ -47,12 +47,26 @@ public class EnergySession extends Controller{
 		
 		 JsonNode node =  ctx().request().body().asJson();
 		 String id = node.get("id").asText();
-		 Boolean inuse   = node.get("inuse").asBoolean();
 		 String token = node.get("token").asText();
+		 String stat = node.get("stat").asText();
 		 
 		 EnergySource source = EnergySource.find().filter("id", id).get();
-		 source.inuse = inuse;
-		 source.token = token;
+		 if(stat == "pick" && source.inuse ==false)
+		 {
+			 	source.inuse = true;
+		 		source.token = token;
+		 }
+		 		else if (stat == "reset" && source.inuse ==true) {
+					
+		 			source.inuse = false;
+			 		source.token = "";
+				}
+		 		else
+		 		{
+		 			return ok(toJson("{\"status\":\"inuse\"}"));
+		 		}
+		 		
+		 			
 		 source.update();
 
 		return ok(toJson(source));
