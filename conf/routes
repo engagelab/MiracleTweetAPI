@@ -18,6 +18,11 @@ PUT				/tweet								controllers.Tweets.updateTweet()
 DELETE			/tweet								controllers.Tweets.removeTweet()
 
 
+#===========================Energy Sources CRUD Services=================================#
+GET				/energySources						controllers.EnergySession.fetchAllEnergySources()
+POST			/energySources						controllers.EnergySession.saveSession()
+PUT 			/energySources						controllers.EnergySession.updateSession
+
 
 
 #============================Tweet HASH Services================================#
