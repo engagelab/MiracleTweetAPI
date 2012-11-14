@@ -11,7 +11,8 @@ GET     /                           controllers.Application.index()
 
 
 #===========================Tweet CRUD Services=================================#
-GET				/tweet/:userName					controllers.Tweets.fetchTweetsByUser(userName:String)
+#GET				/tweet/:userName					controllers.Tweets.fetchTweetsByUser(userName:String)
+GET				/tweet/:tag							controllers.Tweets.fetchTweetsByTag(tag:String)
 POST			/tweet								controllers.Tweets.saveTweet()
 PUT				/tweet								controllers.Tweets.updateTweet()
 DELETE			/tweet								controllers.Tweets.removeTweet()

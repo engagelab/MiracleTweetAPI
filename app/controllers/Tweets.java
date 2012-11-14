@@ -33,12 +33,13 @@ public class Tweets extends Controller
 		 String userName = node.get("userName").asText();
 		 String ownerName = node.get("ownerName").asText();
 		 String text = node.get("text").asText();
+		 String tag = node.get("tag").asText();
 		 Boolean isVisible   = node.get("isVisible").asBoolean();
 		 int xpos = node.get("xpos").asInt();
 		 int ypos = node.get("ypos").asInt();
 		 
 		
-		 Tweet tweet = new Tweet(source,userName,ownerName,text,isVisible,xpos,ypos);
+		 Tweet tweet = new Tweet(source,userName,ownerName,text,tag,isVisible,xpos,ypos);
 		 tweet.insert();
 
 		return ok(toJson(tweet));
@@ -49,25 +50,28 @@ public class Tweets extends Controller
 	 
 	 
 	 
+	 
+	 
 	 public static Result updateTweet() 
 	  {
 		 
 		 JsonNode node =  ctx().request().body().asJson();
 		 String id = node.get("id").asText();
-		 
-		 
 		 Tweet utweet = Tweet.find().filter("id", id).get();
 		 utweet.xpos = node.get("xpos").asInt();;
 		 utweet.ypos = node.get("ypos").asInt();
-		 utweet.userName = node.get("userName").asText();
 		 utweet.isVisible   = node.get("isVisible").asBoolean();
-		 utweet.text = node.get("text").asText();
 		 utweet.update();
 		return ok(toJson(utweet));
 		
 	  }
 	 
 
+	 
+	 
+	 
+	 
+	 
 	 
 	 
 	 public static Result fetchTweetsByUser(String userName) 
@@ -80,6 +84,15 @@ public class Tweets extends Controller
 	  }
 	 
 	 
+	 public static Result fetchTweetsByTag(String tag) 
+	  {
+		 
+		 List<Tweet> tweets = Tweet.find().filter("tag", tag).asList();
+
+		return ok(toJson(tweets));
+		
+	  }
+	 
 	 
 	 
 	 
@@ -91,11 +104,11 @@ public class Tweets extends Controller
 		 
 		 JsonNode node =  ctx().request().body().asJson();
 	
-		 String hashTag = node.get("hashTag").asText();
+		 //String hashTag = node.get("hashTag").asText();
 		 String tweetId = node.get("tweetId").asText();
 		 Tweet tweet = Tweet.find().byId(tweetId);
 		 //first remove reference from Tweet Hash table
-		 removeTweetFromHashTable(tweet,hashTag);
+		 //removeTweetFromHashTable(tweet,hashTag);
 		 //then Kill the object itself
 		 tweet.delete();
 		return ok(toJson("deleted"));
