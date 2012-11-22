@@ -9,129 +9,91 @@ import static play.libs.Json.toJson;
 import play.mvc.Controller;
 import play.mvc.Result;
 
-
 /**
  * @author Muhammad Fahied
- *
+ * 
  */
 
+public class Tweets extends Controller {
 
-public class Tweets extends Controller
-{
+	public static Result saveTweet() {
 
-	
-	
-	
-	
-	
-	 public static Result saveTweet() 
-	  {
-		 
-		 JsonNode node =  ctx().request().body().asJson();
-	
-		 String source = node.get("source").asText();
-		 String userName = node.get("userName").asText();
-		 String ownerName = node.get("ownerName").asText();
-		 String text = node.get("text").asText();
-		 String tag = node.get("tag").asText();
-		 Boolean isVisible   = node.get("isVisible").asBoolean();
-		 int xpos = node.get("xpos").asInt();
-		 int ypos = node.get("ypos").asInt();
-		 
-		
-		 Tweet tweet = new Tweet(source,userName,ownerName,text,tag,isVisible,xpos,ypos);
-		 tweet.insert();
+		JsonNode node = ctx().request().body().asJson();
+
+		String source = node.get("source").asText();
+		String userName = node.get("userName").asText();
+		String ownerName = node.get("ownerName").asText();
+		String text = node.get("text").asText();
+		String tag = node.get("tag").asText();
+		Boolean isVisible = node.get("isVisible").asBoolean();
+		int xpos = node.get("xpos").asInt();
+		int ypos = node.get("ypos").asInt();
+
+		Tweet tweet = new Tweet(source, userName, ownerName, text, tag,
+				isVisible, xpos, ypos);
+		tweet.insert();
 
 		return ok(toJson(tweet));
-		
-	  }
-	 
 
-	 
-	 
-	 
-	 
-	 
-	 public static Result updateTweet() 
-	  {
-		 
-		 JsonNode node =  ctx().request().body().asJson();
-		 String id = node.get("id").asText();
-		 Tweet utweet = Tweet.find().filter("id", id).get();
-		 utweet.xpos = node.get("xpos").asInt();;
-		 utweet.ypos = node.get("ypos").asInt();
-		 utweet.isVisible = node.get("isVisible").asBoolean();
-		 utweet.update();
+	}
+
+	public static Result updateTweet() {
+
+		JsonNode node = ctx().request().body().asJson();
+		String id = node.get("id").asText();
+		Tweet utweet = Tweet.find().filter("id", id).get();
+		utweet.xpos = node.get("xpos").asInt();
+		;
+		utweet.ypos = node.get("ypos").asInt();
+		utweet.isVisible = node.get("isVisible").asBoolean();
+		utweet.update();
 		return ok(toJson(utweet));
-		
-	  }
-	 
 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 public static Result fetchTweetsByUser(String userName) 
-	  {
-		 
-		 List<Tweet> tweets = Tweet.find().filter("userName", userName).asList();
+	}
+
+	public static Result fetchTweetsByUser(String userName) {
+
+		List<Tweet> tweets = Tweet.find().filter("userName", userName).asList();
 
 		return ok(toJson(tweets));
-		
-	  }
-	 
-	 
-	 public static Result fetchTweetsByTag(String tag) 
-	  {
-		 
-		 List<Tweet> tweets = Tweet.find().filter("tag", tag).asList();
+
+	}
+
+	public static Result fetchTweetsByTag(String tag) {
+
+		List<Tweet> tweets = Tweet.find().filter("tag", tag).asList();
 
 		return ok(toJson(tweets));
-		
-	  }
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 public static Result removeTweet() 
-	  {
-		 
-		 JsonNode node =  ctx().request().body().asJson();
-	
-		 //String hashTag = node.get("hashTag").asText();
-		 String tweetId = node.get("tweetId").asText();
-		 Tweet tweet = Tweet.find().byId(tweetId);
-		 //first remove reference from Tweet Hash table
-		 //removeTweetFromHashTable(tweet,hashTag);
-		 //then Kill the object itself
-		 tweet.delete();
+
+	}
+
+	public static Result removeTweet() {
+
+		JsonNode node = ctx().request().body().asJson();
+
+		// String hashTag = node.get("hashTag").asText();
+		String tweetId = node.get("tweetId").asText();
+		Tweet tweet = Tweet.find().byId(tweetId);
+		// first remove reference from Tweet Hash table
+		// removeTweetFromHashTable(tweet,hashTag);
+		// then Kill the object itself
+		tweet.delete();
 		return ok(toJson("deleted"));
-		
-	  }
-	 
-	 
-	 
-	 
-	 
-	 
-	 public static Boolean removeTweetFromHashTable(Tweet tweet, String hashTag)
-	 {
-		 
-		 TweetHashTable table = TweetHashTable.find().filter("hashTag", hashTag).get();
-		 if (table == null) {return false;}
 
-		 table.tweets.remove(tweet);
-		 table.update();
-		 return true;
-		 
-	 }
-	 
+	}
 
+	public static Boolean removeTweetFromHashTable(Tweet tweet, String hashTag) {
+
+		TweetHashTable table = TweetHashTable.find().filter("hashTag", hashTag)
+				.get();
+		if (table == null) {
+			return false;
+		}
+
+		table.tweets.remove(tweet);
+		table.update();
+		return true;
+
+	}
 
 }
