@@ -60,7 +60,7 @@ public class Tweets extends Controller
 		 Tweet utweet = Tweet.find().filter("id", id).get();
 		 utweet.xpos = node.get("xpos").asInt();;
 		 utweet.ypos = node.get("ypos").asInt();
-		 utweet.isVisible   = node.get("isVisible").asBoolean();
+		 utweet.isVisible = node.get("isVisible").asBoolean();
 		 utweet.update();
 		return ok(toJson(utweet));
 		

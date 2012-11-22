@@ -1,5 +1,5 @@
 /**
- *  Tweet.java
+ *  Question.java
  */
 
 
@@ -19,48 +19,40 @@ import leodagdag.play2morphia.Model;
 
 
 /**
- * @author Muhammad Fahied
+ * @author Jeremy Toussaint
  *
  */
 
 
 @Entity
-public class Tweet extends Model
+public class Question extends Model
 {
 	
 	//adopted from Twitter JSON Schema
 	@Id
 	public String id = new ObjectId().toString();
-	public String source;
-	public String createdAt;
-	public String userName;
 	public String ownerName;
 	public String text;
-	public String tag;
 	//custom fields
-	public Boolean isVisible;
+	public String taskId;
 	public int xpos;
 	public int ypos;
 	
-	public static Model.Finder<String, Tweet> find()
+	public static Model.Finder<String, Question> find()
 	{
-		return new Model.Finder<String, Tweet>(String.class, Tweet.class);
+		return new Model.Finder<String, Question>(String.class, Question.class);
 	}
 
 	
 	//empty constructor for fetch queries
-	public Tweet() {}
+	public Question() {}
 	
 	
-	public Tweet(String source, String userName, String ownerName, String text,String tag, Boolean isVisible, int xpos, int ypos)
+	public Question(String ownerName, String text, String taskId, int xpos, int ypos)
 	{
-		this.source      = source;
-		this.createdAt   = new Date().toString();
-		this.userName    = userName;
 		this.ownerName   = ownerName;
 		this.text        = text;
-		this.tag		 = tag; 
-		this.isVisible   = isVisible;
+		this.taskId		 = taskId; 
 		this.xpos        = xpos;
 		this.ypos        = ypos;
 	}
@@ -69,13 +61,9 @@ public class Tweet extends Model
     public String toString() {
         return Objects.toStringHelper(this)
         		.add("id", id)
-                .add("source", source)
-                .add("createdAt", createdAt)
-                .add("userName", userName)
                 .add("ownerName", ownerName)
                 .add("text", text)
-                .add("tag", tag)
-                .add("isVisible", isVisible)
+                .add("taskId", taskId)
                 .add("xpos", xpos)
                 .add("ypos", ypos)
                 .toString();

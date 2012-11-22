@@ -51,25 +51,31 @@ public class EnergySession extends Controller{
 		 String stat = node.get("stat").asText();
 		 
 		 EnergySource source = EnergySource.find().filter("id", id).get();
-		 if(stat == "pick" && source.inuse ==false)
-		 {
-			 	source.inuse = true;
-		 		source.token = token;
-		 }
-		 		else if (stat == "reset" && source.inuse ==true) {
+		 if(source != null) {
+		 	if(stat.equals("pick") && !source.inuse)
+			 {
+				 	source.inuse = true;
+			 		source.token = token;
+			 		source.update();
+					return ok(toJson(source));
+			 }
+			 else if (stat.equals("reset") && source.inuse) {
 					
-		 			source.inuse = false;
-			 		source.token = "";
-				}
-		 		else
-		 		{
-		 			return ok(toJson("{\"status\":\"inuse\"}"));
-		 		}
+		 				source.inuse = false;
+				 		source.token = "";
+				 		source.update();
+					return ok(toJson(source));
+			}
+			else
+			{
+				return ok(toJson("{\"status\":\"inuse\"}"));
+			}
+		}
+		 else{
+		 	return ok(toJson("{\"status\":\"wrongId\"}"));
+		 }
 		 		
-		 			
-		 source.update();
-
-		return ok(toJson(source));
+		
 		
 	  }
 	 

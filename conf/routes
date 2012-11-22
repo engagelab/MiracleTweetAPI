@@ -31,13 +31,17 @@ POST			/hash								controllers.TweetHashStore.addTweetToHashTable
 
 
 
-#===============================================================================#
+#============================Question CRUD Services============================#
+GET				/question/:taskId							controllers.Questions.fetchQuestionsByTaskId(taskId:String)
+POST			/question								controllers.Questions.saveQuestion()
+PUT				/question								controllers.Questions.updateQuestion()
 
 
 
-
-#===============================================================================#
-
+#===========================ArticleURLs CRUD Services=================================#
+GET				/articleUrl/:groupId						controllers.ArticleURLs.fetchArticleURLByGroupId(groupId:String)
+POST			/articleUrl						controllers.ArticleURLs.saveArticleUrl()
+PUT 			/articleUrl						controllers.ArticleURLs.updateArticleUrl
 
 
 
