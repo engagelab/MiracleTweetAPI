@@ -44,6 +44,12 @@ POST			/articleUrl						controllers.ArticleURLs.saveArticleUrl()
 PUT 			/articleUrl						controllers.ArticleURLs.updateArticleUrl
 
 
+#============================SimQuestion CRUD Services============================#
+GET				/simQuestion/:taskId/:groupId				controllers.SimQuestions.fetchQuestionsByTaskId(taskId:String, groupId:String)
+POST			/simQuestion								controllers.SimQuestions.saveQuestion()
+PUT				/simQuestion								controllers.SimQuestions.updateQuestion()
+
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
