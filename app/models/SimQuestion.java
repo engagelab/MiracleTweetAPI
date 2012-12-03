@@ -26,7 +26,7 @@ public class SimQuestion extends Model {
 	public String answer;
 	public String taskId;
 	public String groupId;
-	public int order;
+	public String order;
 	
 	public static Model.Finder<String, SimQuestion> find() {
 		return new Model.Finder<String, SimQuestion>(String.class, SimQuestion.class);
@@ -36,7 +36,7 @@ public class SimQuestion extends Model {
 	public SimQuestion() {
 	}
 
-	public SimQuestion(String question, String answer, String taskId, String groupId, int order) {
+	public SimQuestion(String question, String answer, String taskId, String groupId, String order) {
 		this.question = question;
 		this.answer = answer;
 		this.taskId = taskId;

@@ -28,7 +28,7 @@ public class SimQuestions extends Controller {
 		String answer = node.get("answer").asText();
 		String taskId = node.get("taskId").asText();
 		String groupId = node.get("groupId").asText();
-		int order = node.get("order").asInt();
+		String order = node.get("order").asText();
 		
 		List<SimQuestion> sQuestions = SimQuestion.find().filter("taskId", taskId).filter("groupId", groupId).order("order").asList();
 		
