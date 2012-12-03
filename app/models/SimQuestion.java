@@ -26,6 +26,7 @@ public class SimQuestion extends Model {
 	public String answer;
 	public String taskId;
 	public String groupId;
+	public int order;
 	
 	public static Model.Finder<String, SimQuestion> find() {
 		return new Model.Finder<String, SimQuestion>(String.class, SimQuestion.class);
@@ -35,17 +36,18 @@ public class SimQuestion extends Model {
 	public SimQuestion() {
 	}
 
-	public SimQuestion(String question, String answer, String taskId, String groupId) {
+	public SimQuestion(String question, String answer, String taskId, String groupId, int order) {
 		this.question = question;
 		this.answer = answer;
 		this.taskId = taskId;
 		this.groupId = groupId;
+		this.order = order;
 	}
 
 	@Override
 	public String toString() {
 		return Objects.toStringHelper(this).add("id", id)
 				.add("question", question).add("answer", answer)
-				.add("taskId", taskId).add("groupId", groupId).toString();
+				.add("taskId", taskId).add("groupId", groupId).add("order", order).toString();
 	}
 }
