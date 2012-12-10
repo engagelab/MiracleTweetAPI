@@ -49,6 +49,10 @@ GET				/simQuestion/:taskId/:groupId				controllers.SimQuestions.fetchQuestionsB
 POST			/simQuestion								controllers.SimQuestions.saveQuestion()
 PUT				/simQuestion								controllers.SimQuestions.updateQuestion()
 
+#===========================TeacherTweet CRUD Services=================================#
+GET				/teacherTweet/:taskId						controllers.TeacherTweets.fetchTweetsByTaskId(taskId)
+POST			/teacherTweet								controllers.TeacherTweets.saveTweet()
+PUT				/teacherTweet								controllers.TeacherTweets.updateTweet()
 
 
 # Map static resources from the /public folder to the /assets URL path
