@@ -18,10 +18,7 @@ public class EnergySource extends Model {
 	public String token;
 
 	public static Model.Finder<String, EnergySource> find() {
-
-		return new Model.Finder<String, EnergySource>(String.class,
-				EnergySource.class);
-
+		return new Model.Finder<String, EnergySource>(String.class, EnergySource.class);
 	}
 
 	public EnergySource() {
