@@ -16,6 +16,7 @@ public class EnergySource extends Model {
 	public String energy;
 	public Boolean inuse;
 	public String token;
+	public String icon;
 
 	public static Model.Finder<String, EnergySource> find() {
 		return new Model.Finder<String, EnergySource>(String.class, EnergySource.class);
@@ -25,17 +26,18 @@ public class EnergySource extends Model {
 		// TODO Auto-generated constructor stub
 	}
 
-	public EnergySource(String energy, Boolean inuse, String token) {
+	public EnergySource(String energy, Boolean inuse, String token, String icon) {
 
 		this.energy = energy;
 		this.inuse = inuse;
 		this.token = token;
+		this.icon = icon;
 	}
 
 	@Override
 	public String toString() {
 		return Objects.toStringHelper(this).add("id", id).add("energy", energy)
-				.add("inuse", inuse).add("token", token).toString();
+				.add("inuse", inuse).add("token", token).add("icon", icon).toString();
 	}
 
 }

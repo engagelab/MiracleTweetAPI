@@ -29,8 +29,9 @@ public class EnergySession extends Controller {
 		String energy = node.get("energy").asText();
 		Boolean inuse = node.get("inuse").asBoolean();
 		String token = node.get("token").asText();
+		String icon = node.get("icon").asText();
 
-		EnergySource source = new EnergySource(energy, inuse, token);
+		EnergySource source = new EnergySource(energy, inuse, token, icon);
 		source.insert();
 
 		return ok(toJson(source));
