@@ -61,7 +61,7 @@ public class Tweets extends Controller {
 
 	public static Result fetchTweetsByTag(String tag) {
 
-		List<Tweet> tweets = Tweet.find().filter("tag", tag).asList();
+		List<Tweet> tweets = Tweet.find().filter("tag", tag.replace("ￃﾸ", "ø")).asList();
 
 		return ok(toJson(tweets));
 
